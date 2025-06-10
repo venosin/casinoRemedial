@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 // Cargar variables de entorno
 dotenv.config();
 
-export const config = {
+const config = {
   environment: {
     status: process.env.NODE_ENV || 'development',
     isDevelopment: process.env.NODE_ENV !== 'production',
@@ -18,10 +18,10 @@ export const config = {
     host: process.env.HOST || 'localhost',
   },
   database: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/casinoRemedial',
+    uri: process.env.MONGODB_URI,
   },
   auth: {
-    jwtSecret: process.env.JWT_SECRET || 'secret_token_development',
+    jwtSecret: process.env.JWT_SECRET,
     jwtExpire: process.env.JWT_EXPIRE || '30d',
     cookieExpire: parseInt(process.env.COOKIE_EXPIRE, 10) || 30,
   },
@@ -30,3 +30,5 @@ export const config = {
     credentials: true,
   },
 };
+
+export default config;

@@ -28,7 +28,7 @@ export const protect = async (req, res, next) => {
             token = req.headers.authorization.split(' ')[1];
 
             // Verificar el token
-            const decoded = jwt.verify(token, config.jwt.secret);
+            const decoded = jwt.verify(token, config.auth.jwtSecret);
 
             // Obtener el usuario del token (sin incluir la contraseña)
             req.user = await Client.findById(decoded.id).select('-password');

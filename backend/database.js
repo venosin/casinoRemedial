@@ -8,7 +8,7 @@
 
 // Importaciones necesarias
 import mongoose from "mongoose";
-import { config } from "./src/config.js";
+import config from "./src/config.js";
 
 // Opciones de configuración de Mongoose
 const mongooseOptions = {

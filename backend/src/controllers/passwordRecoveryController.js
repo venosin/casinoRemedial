@@ -5,6 +5,8 @@
 
 import Client from "../models/Clients.js";
 import { sendEmail, generatePasswordRecoveryEmail } from "../services/emailService.js";
+// Nota: bcrypt se utiliza a nivel del modelo Client.js mediante middleware pre-save
+// y el método comparePassword, siguiendo buenas prácticas de separación de responsabilidades
 import bcrypt from "bcryptjs";
 
 /**

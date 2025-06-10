@@ -5,7 +5,6 @@
 
 import Client from "../models/Clients.js";
 import { sendEmail, generateEmailVerificationEmail } from "../services/emailService.js";
-import crypto from "crypto";
 
 /**
  * Genera un código de verificación aleatorio

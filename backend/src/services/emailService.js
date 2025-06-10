@@ -4,7 +4,7 @@
  */
 
 import nodemailer from "nodemailer";
-import { config } from "../../src/config.js";
+import config from "../../src/config.js";
 
 // Configurar el transporter de Nodemailer
 const transporter = nodemailer.createTransport({
