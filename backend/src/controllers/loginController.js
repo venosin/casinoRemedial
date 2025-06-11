@@ -13,8 +13,8 @@ import config from '../config.js';
  * @returns {string} Token JWT generado
  */
 const generateToken = (id) => {
-    return jwt.sign({ id }, config.jwt.secret, {
-        expiresIn: config.jwt.expiresIn, // Tiempo de expiración del token
+    return jwt.sign({ id }, config.auth.jwtSecret, {
+        expiresIn: config.auth.jwtExpire, // Tiempo de expiración del token
     });
 };
 
