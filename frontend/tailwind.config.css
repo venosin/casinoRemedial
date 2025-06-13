@@ -1,0 +1,39 @@
+@theme {
+  /* Paleta de colores personalizada para el casino */
+  --color-primary: #DA0037; /* Rojo casino */
+  --color-secondary: #171717; /* Negro oscuro */
+  --color-accent: #F8BC25; /* Dorado */
+  --color-neutral: #EDEDED; /* Casi blanco */
+  --color-base-100: #111111; /* Fondo oscuro */
+  
+  /* Fuentes personalizadas */
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+/* Configuración del tema DaisyUI usando variables CSS */
+@theme daisyui {
+  /* Tema casino */
+  --daisyui-casino-primary: #DA0037;
+  --daisyui-casino-secondary: #171717;
+  --daisyui-casino-accent: #F8BC25;
+  --daisyui-casino-neutral: #EDEDED;
+  --daisyui-casino-base-100: #111111;
+  --daisyui-casino-info: #3ABFF8;
+  --daisyui-casino-success: #36D399;
+  --daisyui-casino-warning: #FBBD23;
+  --daisyui-casino-error: #F87272;
+}
+
+@backgroundImage {
+  'casino-pattern': url('/src/assets/pattern.png');
+  'hero-pattern': url('/src/assets/hero-bg.jpg');
+}

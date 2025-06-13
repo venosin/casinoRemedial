@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: "20210240@ricaldone.edu.sv",
+        user: process.env.ADMIN_EMAIL,
         pass: process.env.APP_PASSWORD_EMAIL
     },
 });
@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
 const sendEmail = async (to, subject, text, html) => {
     try {
         const info = await transporter.sendMail({
-            from: `"Casino Remedial" <20210240@ricaldone.edu.sv>`, // Dirección del remitente
+            from: `"Casino Remedial" <${process.env.ADMIN_EMAIL}>`, // Dirección del remitente
             to, // Dirección(es) del destinatario
             subject, // Asunto
             text, // Cuerpo del correo en texto plano
