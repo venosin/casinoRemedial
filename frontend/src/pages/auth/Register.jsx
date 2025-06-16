@@ -23,10 +23,21 @@ const Register = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await registerUser(data.name, data.email, data.password);
-      navigate('/auth/verificacion');
+      // Preparar los datos según el modelo del backend
+      const userData = {
+        fullName: data.name,
+        email: data.email,
+        password: data.password,
+        age: data.age,
+        country: data.country
+      };
+      
+      const success = await registerUser(userData);
+      if (success) {
+        navigate('/auth/verificacion');
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error durante el registro:', error);
     } finally {
       setLoading(false);
     }
@@ -46,7 +57,7 @@ const Register = () => {
         <p className="text-neutral/70">Únete a nuestra plataforma de casino</p>
       </div>
       
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium block">
             Nombre completo
@@ -144,7 +155,66 @@ const Register = () => {
           {errors.confirmPassword && <p className="text-sm text-error mt-1">{errors.confirmPassword.message}</p>}
         </div>
         
-        <div className="flex items-start">
+        <div className="space-y-2">
+          <label htmlFor="age" className="text-sm font-medium block">
+            Edad
+          </label>
+          <input
+            id="age"
+            type="number"
+            {...register("age", { 
+              required: "La edad es requerida",
+              min: {
+                value: 18,
+                message: "Debes tener al menos 18 años"
+              },
+              max: {
+                value: 120,
+                message: "La edad no puede ser mayor a 120 años"
+              }
+            })}
+            className="w-full px-3 py-2 rounded-lg bg-secondary border border-gray-800 focus:ring-2 focus:ring-primary focus:border-transparent"
+            placeholder="Edad"
+          />
+          {errors.age && <p className="text-sm text-error mt-1">{errors.age.message}</p>}
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="country" className="text-sm font-medium block">
+            País
+          </label>
+          <select
+            id="country"
+            {...register("country", { 
+              required: "El país es requerido"
+            })}
+            className="w-full px-3 py-2 rounded-lg bg-secondary border border-gray-800 focus:ring-2 focus:ring-primary focus:border-transparent"
+          >
+            <option value="">Selecciona tu país</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Chile">Chile</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="España">España</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Honduras">Honduras</option>
+            <option value="México">México</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Panamá">Panamá</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Perú">Perú</option>
+            <option value="República Dominicana">República Dominicana</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Venezuela">Venezuela</option>
+          </select>
+          {errors.country && <p className="text-sm text-error mt-1">{errors.country.message}</p>}
+        </div>
+        
+        <div className="flex items-start mt-4">
           <input
             id="terms"
             type="checkbox"

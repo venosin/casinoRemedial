@@ -22,10 +22,15 @@ const Login = () => {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
-      await login(data.email, data.password);
-      navigate('/dashboard');
+      const success = await login({
+        email: data.email,
+        password: data.password
+      });
+      if (success) {
+        navigate('/dashboard');
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Error durante el inicio de sesión:', error);
     } finally {
       setLoading(false);
     }

@@ -107,7 +107,7 @@ export const admin = (req, res, next) => {
  */
 export const checkOwnership = (req, res, next) => {
     // Si el usuario es administrador o es el dueño del recurso (comparando IDs)
-    if (req.user.isAdmin || req.user._id.toString() === req.params.id) {
+    if (req.user.role === 'admin' || req.user._id.toString() === req.params.id) {
         next();
     } else {
         res.status(403).json({

@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await axios.get('/api/auth/verify');
+        const response = await axios.get('/api/logout/verify');
         setUser(response.data.user);
         setLoading(false);
       } catch (error) {
@@ -50,14 +50,14 @@ export const AuthProvider = ({ children }) => {
   // Función para iniciar sesión
   const login = async (credentials) => {
     try {
-      const response = await axios.post('/api/auth/login', credentials);
-      const { token, user } = response.data;
+      const response = await axios.post('/api/login', credentials);
+      const { token, client } = response.data;
       
       localStorage.setItem('token', token);
       setToken(token);
-      setUser(user);
+      setUser(client);
       
-      toast.success('Sesión iniciada correctamente');
+      toast.success(response.data.message || 'Sesión iniciada correctamente');
       return true;
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Error al iniciar sesión';
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
   // Función para registrar nuevos usuarios
   const register = async (userData) => {
     try {
-      const response = await axios.post('/api/auth/register', userData);
+      const response = await axios.post('/api/clients', userData);
       toast.success('Registro exitoso. Por favor verifica tu email.');
       return true;
     } catch (error) {
@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }) => {
   // Función para verificar email
   const verifyEmail = async (verificationToken) => {
     try {
-      const response = await axios.post(`/api/auth/verify-email`, { token: verificationToken });
+      const response = await axios.post(`/api/verify-email`, { token: verificationToken });
       toast.success('Email verificado correctamente');
       return true;
     } catch (error) {
@@ -110,6 +110,11 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = () => {
     return !!user;
   };
+  
+  // Comprobar si el usuario es administrador
+  const isAdmin = () => {
+    return user && user.role === 'admin';
+  };
 
   // Valor del contexto que estará disponible para los componentes
   const authContextValue = {
@@ -120,7 +125,8 @@ export const AuthProvider = ({ children }) => {
     logout,
     verifyEmail,
     hasRole,
-    isAuthenticated
+    isAuthenticated,
+    isAdmin
   };
 
   return (

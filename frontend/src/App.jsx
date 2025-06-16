@@ -28,18 +28,18 @@ const NotFound = lazy(() => import('./pages/NotFound'));
  * Implementa rutas protegidas según el estado de autenticación y rol del usuario
  */
 function App() {
-  const { user, isAuthenticated, isAdmin, isLoading } = useAuth();
+  const { user, loading, isAuthenticated, isAdmin } = useAuth();
 
   // Componente para rutas que requieren autenticación
   const ProtectedRoute = ({ children }) => {
-    if (isLoading) return <LoadingSpinner />;
+    if (loading) return <LoadingSpinner />;
     if (!isAuthenticated) return <Navigate to="/login" />;
     return children;
   };
 
   // Componente para rutas que requieren rol de administrador
   const AdminRoute = ({ children }) => {
-    if (isLoading) return <LoadingSpinner />;
+    if (loading) return <LoadingSpinner />;
     if (!isAuthenticated) return <Navigate to="/login" />;
     if (!isAdmin) return <Navigate to="/dashboard" />;
     return children;
@@ -47,7 +47,7 @@ function App() {
 
   // Componente para rutas que solo deben ser accesibles si NO está autenticado
   const PublicOnlyRoute = ({ children }) => {
-    if (isLoading) return <LoadingSpinner />;
+    if (loading) return <LoadingSpinner />;
     if (isAuthenticated) return <Navigate to="/dashboard" />;
     return children;
   };
