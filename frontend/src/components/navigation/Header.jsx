@@ -149,7 +149,11 @@ const Header = () => {
                       <HiUser className="mr-2" /> Mi Perfil
                     </Link>
                     <button
-                      onClick={() => logout()}
+                      onClick={() => {
+                        logout();
+                        setProfileDropdown(false);
+                        // Cerrar menú desplegable después de logout
+                      }}
                       className="flex items-center w-full text-left px-4 py-2 text-sm text-neutral/80 hover:bg-neutral/10 hover:text-error"
                     >
                       <HiLogout className="mr-2" /> Cerrar Sesión
@@ -250,7 +254,11 @@ const Header = () => {
                         <HiUser className="mr-2" /> Mi Perfil
                       </Link>
                       <button
-                        onClick={() => logout()}
+                        onClick={() => {
+                          logout();
+                          setIsOpen(false);
+                          // Cerrar menú móvil después de logout
+                        }}
                         className="flex items-center py-2 text-neutral/80"
                       >
                         <HiLogout className="mr-2" /> Cerrar Sesión

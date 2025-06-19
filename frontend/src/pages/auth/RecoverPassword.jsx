@@ -59,7 +59,7 @@ const PasswordRecovery = () => {
           </p>
           
           <div className="pt-4">
-            <Link to="/auth/login" className="text-primary hover:underline flex items-center justify-center">
+            <Link to="/login" className="text-primary hover:underline flex items-center justify-center">
               <FiArrowLeft className="mr-2" /> Volver a inicio de sesión
             </Link>
           </div>
@@ -91,20 +91,22 @@ const PasswordRecovery = () => {
             {errors.email && <p className="text-sm text-error mt-1">{errors.email.message}</p>}
           </div>
           
-          <button 
+          <motion.button 
             type="submit" 
             disabled={loading}
-            className="w-full py-3 btnPrimaryGradient rounded-lg flex items-center justify-center hover:btnPrimaryGradientHover disabled:opacity-70 disabled:cursor-not-allowed"
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full py-3 btnPrimaryGradient rounded-lg flex items-center justify-center hover:btnPrimaryGradientHover disabled:opacity-70 disabled:cursor-not-allowed transition-all shadow-lg shadow-primary/20"
           >
             {loading ? (
-              <span className="animate-spin">◌</span>
+              <div className="h-6 w-6 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>
             ) : (
-              "Enviar correo de recuperación"
+              'Enviar instrucciones'
             )}
-          </button>
+          </motion.button>
           
-          <div className="text-center">
-            <Link to="/auth/login" className="text-primary hover:underline flex items-center justify-center">
+          <div className="mt-8 text-center">
+            <Link to="/login" className="text-primary hover:underline flex items-center justify-center">
               <FiArrowLeft className="mr-2" /> Volver a inicio de sesión
             </Link>
           </div>

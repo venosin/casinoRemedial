@@ -142,9 +142,14 @@ const Login = () => {
             <label htmlFor="password" className="text-sm font-medium block">
               Contraseña
             </label>
-            <Link to="/recover-password" className="text-sm text-primary hover:underline transition-colors">
-              ¿Olvidaste tu contraseña?
-            </Link>
+            <div className="flex flex-col space-y-4">
+              <Link
+                to="/recover-password"
+                className="text-sm text-primary hover:underline self-end"
+              >
+                ¿Olvidaste tu contraseña?
+              </Link>
+            </div>
           </div>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -199,7 +204,7 @@ const Login = () => {
           <div className="w-full border-t border-gray-800"></div>
         </div>
         <div className="relative flex justify-center">
-          <span className="bg-secondary px-4 text-sm text-neutral/60">¿Eres nuevo aquí?</span>
+          <span className="bg-secondary px-4 text-sm text-neutral/60">¿No tienes cuenta?</span>
         </div>
       </div>
       
@@ -208,7 +213,7 @@ const Login = () => {
           to="/register" 
           className="inline-flex items-center gap-1 text-primary hover:text-primary/80 font-medium transition-colors"
         >
-          Crear una nueva cuenta
+          Crear una cuenta nueva
         </Link>
       </div>
     </motion.div>

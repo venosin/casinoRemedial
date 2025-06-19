@@ -28,7 +28,7 @@ const EmailVerification = () => {
           toast.success('Tu correo ha sido verificado correctamente');
           // Redirigir al login después de 3 segundos
           setTimeout(() => {
-            navigate('/auth/login');
+            navigate('/login');
           }, 3000);
         } catch (error) {
           console.error(error);
@@ -89,7 +89,7 @@ const EmailVerification = () => {
           </p>
           
           <div className="pt-4">
-            <Link to="/auth/login" className="btnPrimaryGradient px-6 py-2 rounded-lg inline-block">
+            <Link to="/login" className="btnPrimaryGradient px-6 py-2 rounded-lg inline-block">
               Ir a iniciar sesión
             </Link>
           </div>
